@@ -1,0 +1,70 @@
+version: 3.3;
+
+networks:
+  mqtt-project:
+    driver: bridge
+
+services:
+  nginx:
+    image: nginx:1.23.3
+    restart: always
+    container_name: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - mqtt-project
+
+  api:
+    build:
+      context: ./api
+      dockerfile: ../docker/api/Dockerfile
+    container_name: api
+    ports:
+      - 9000:9000
+    volumes:
+      - ./api/:/var/www/
+      - ./docker/api/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - mqtt-project
+
+  broker:
+    build:
+      context: ./broker
+      dockerfile: ../docker/broker/Dockerfile
+    container_name: broker
+    restart: always
+    volumes:
+      - ./broker:/usr/src/app
+    ports:
+      - 8883:8883
+    networks:
+      - mqtt-project
+
+  mysql:
+    image: mysql:8.0.32
+    container_name: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: 'mqtt-broker'
+      MYSQL_PASSWORD: 'mqtt'
+    user: '1000:1000'
+    volumes:
+      - ./docker/mysql/dump:/var/lib/mysql
+    networks:
+      - mqtt-project
+
+  influxdb:
+    image: influxdb:2.6-alpine
+    user: '1000:1000'
+    volumes:
+      - ./docker/influxdb/data:/var/lib/influxdb2:rw
+    ports:
+      - "8086:8086"
