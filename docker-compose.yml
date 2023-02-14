@@ -43,21 +43,28 @@ services:
 #      - 8883:8883
 #    networks:
 #      - mqtt-project
-#
-#  mysql:
-#    build:
-#      context: .
-#      dockerfile: ./docker/mysql/Dockerfile
-#    container_name: mysql
-#    restart: always
-#    ports:
-#      - 3306:3306
-#    environment:
-#      MYSQL_ROOT_PASSWORD: 'root'
-#      MYSQL_ROOT_HOST: '%'
-#      MYSQL_DATABASE: 'mqtt-broker'
-#      MYSQL_PASSWORD: 'mqtt'
-#    volumes:
-#      - /docker/mysql/dump/:/var/lib/mysql/
-#    networks:
-#      - mqtt-project
+
+  mysql:
+    image: mysql:8.0.32
+    container_name: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: 'mqtt-broker'
+      MYSQL_PASSWORD: 'mqtt'
+    user: '1000:1000'
+    volumes:
+      - ./docker/mysql/dump:/var/lib/mysql
+    networks:
+      - mqtt-project
+
+  influxdb:
+    image: influxdb:2.6-alpine
+    user: '1000:1000'
+    volumes:
+      - ./docker/influxdb/data:/var/lib/influxdb2:rw
+    ports:
+      - "8086:8086"
