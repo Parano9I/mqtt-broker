@@ -31,18 +31,18 @@ services:
     networks:
       - mqtt-project
 
-#  broker:
-#    build:
-#      context: ./broker
-#      dockerfile: ../docker/broker/Dockerfile
-#    container_name: broker
-#    restart: always
-#    volumes:
-#      - ./broker/:/usr/src/app/
-#    ports:
-#      - 8883:8883
-#    networks:
-#      - mqtt-project
+  broker:
+    build:
+      context: ./broker
+      dockerfile: ../docker/broker/Dockerfile
+    container_name: broker
+    restart: always
+    volumes:
+      - ./broker:/usr/src/app
+    ports:
+      - 8883:8883
+    networks:
+      - mqtt-project
 
   mysql:
     image: mysql:8.0.32
