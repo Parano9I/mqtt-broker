@@ -9,7 +9,7 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function updateRole(User $user,): bool
+    public function updateRole(User $user): bool
     {
         return $user->role->isOwner();
     }

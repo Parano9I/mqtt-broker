@@ -23,7 +23,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return response([
+        return response()->json([
             'data' => UserResource::collection(User::paginate(10))
         ]);
     }
@@ -39,7 +39,7 @@ class UserController extends Controller
             'role' => $this->userService->getDefaultRole()
         ]);
 
-        return response([
+        return response()->json([
             'data' => [
                 new UserResource($user)
             ]
@@ -50,7 +50,7 @@ class UserController extends Controller
     {
         $user = $request->user()->update($request->validated());
 
-        return response([
+        return response()->json([
             'data' => [
                 new UserResource($user)
             ]
@@ -63,7 +63,7 @@ class UserController extends Controller
         $user = $request->user()->update($request->validated());
         $user->deleteOrFail();
 
-        return response([
+        return response()->json([
             'messages' => [
                 'title' => "User with $id id deleted",
                 'detail' => "User with $id id deleted",
