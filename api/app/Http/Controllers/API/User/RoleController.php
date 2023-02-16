@@ -16,7 +16,7 @@ class RoleController extends Controller
     public function index()
     {
         $rolesArray = UserRoleEnum::cases();
-        $roles = collect($rolesArray)->keys()->map(function ($id) use($rolesArray) {
+        $roles = collect($rolesArray)->keys()->map(function ($id) use ($rolesArray) {
             return [
                 'id' => $id,
                 'type' => 'role',
@@ -26,7 +26,7 @@ class RoleController extends Controller
             ];
         });
 
-        return response([
+        return response()->json([
             'data' => [
                 $roles
             ]
@@ -42,14 +42,14 @@ class RoleController extends Controller
         ]);
         $role = UserRoleEnum::tryFrom($request->get('role'));
 
-        if($role->isOwner()){
+        if ($role->isOwner()) {
             throw new PermissionDeniedException('There can only be one owner');
         }
 
         $subject = $request->user();
 
         if ($subject->id === $user->id) {
-            return response([
+            return response()->json([
                 'errors' => [
                     'title' => 'Bad params',
                     'detail' => 'The user cannot change his role',
@@ -60,7 +60,7 @@ class RoleController extends Controller
 
         $user->update(['role' => $role]);
 
-        return response([
+        return response()->json([
             'data' => new UserResource($user)
         ]);
     }

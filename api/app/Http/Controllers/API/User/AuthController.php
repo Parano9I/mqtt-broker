@@ -18,7 +18,7 @@ class AuthController extends Controller
         $user = User::query()->where('login', $credentials['login'])->firstOrFail();
 
         if (!$hasher->verify($user->password, $credentials['password'])) {
-            return response([
+            return response()->json([
                 'errors' => [
                     'title' => 'Bad credentials',
                     'detail' => 'Wrong password',
@@ -41,7 +41,7 @@ class AuthController extends Controller
     {
         $request->user()->tokens()->delete();
 
-        return response([
+        return response()->json([
             'messages' => [
                 'title' => 'Logged out',
                 'detail' => 'Logged out is success',

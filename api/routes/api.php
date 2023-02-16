@@ -17,3 +17,10 @@ Route::prefix('users')->middleware('auth:sanctum')->group(function () {
     Route::get('/roles', 'App\Http\Controllers\API\User\RoleController@index')->name('users.roles.index');
     Route::patch('/{user}/roles', 'App\Http\Controllers\API\User\RoleController@update')->name('users.role.update');
 });
+
+Route::prefix('organizations')->middleware('auth:sanctum')->group(function () {
+    Route::get('/', 'App\Http\Controllers\API\OrganizationController@index')->name('organization.index');
+    Route::post('/', 'App\Http\Controllers\API\OrganizationController@store')->name('organization.store');
+    Route::patch('/{organization}', 'App\Http\Controllers\API\OrganizationController@update')->name('organization.update');
+    Route::delete('/{organization}', 'App\Http\Controllers\API\OrganizationController@destroy')->name('organization.destroy');
+});
