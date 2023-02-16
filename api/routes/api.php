@@ -3,17 +3,17 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::prefix('auth')->group(function () {
+    Route::post('/login', 'App\Http\Controllers\API\User\AuthController@login')->name('auth.login');
+    Route::post('/logout', 'App\Http\Controllers\API\User\AuthController@logout')->middleware('auth:sanctum')->name('auth.logout');
+});
 
-Route::get('/', function (Request $request) {
-   dd($request);
+Route::post('/users', 'App\Http\Controllers\API\User\UserController@store')->name('user.store');
+Route::prefix('users')->middleware('auth:sanctum')->group(function () {
+    Route::get('/', 'App\Http\Controllers\API\User\UserController@index')->name('user.index');
+    Route::patch('/', 'App\Http\Controllers\API\User\UserController@update')->name('user.update');
+    Route::delete('/', 'App\Http\Controllers\API\User\UserController@destroy')->name('user.destroy');
+
+    Route::get('/roles', 'App\Http\Controllers\API\User\RoleController@index')->name('users.roles.index');
+    Route::patch('/{user}/roles', 'App\Http\Controllers\API\User\RoleController@update')->name('users.role.update');
 });

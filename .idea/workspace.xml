@@ -7,14 +7,14 @@
     <list default="true" id="6eacba4b-492d-4e29-935c-ebcfd5d5d7a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/database/seeders/DatabaseSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/api/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -158,23 +158,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm&quot;: &quot;Docker Compose&quot;,
-    &quot;credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm&quot;: &quot;Docker Compose&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/parano1a/Projects/mqtt-broker-test/docker/backend/Dockerfile&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php.debug&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.laravel-idea.search-composer-json": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm": "Docker Compose",
+    "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm": "Docker Compose",
+    "last_opened_file_path": "/home/parano1a/Projects/mqtt-broker/api",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/api" />
@@ -200,6 +201,8 @@
       <workItem from="1676178368278" duration="6007000" />
       <workItem from="1676271815720" duration="20468000" />
       <workItem from="1676358231102" duration="10407000" />
+      <workItem from="1676382949898" duration="3173000" />
+      <workItem from="1676444566356" duration="76000" />
     </task>
     <servers />
   </component>
