@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Group;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TokenResource extends JsonResource
+class GroupResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
     {
         return [
-            'type' => 'token',
-            'id' => $this->userId,
+            'type'       => 'group',
+            'id'         => $this->id,
             'attributes' => [
-                'type' => 'Bearer',
-                'payload' => $this->payload
+                'title'       => $this->title,
+                'description' => $this->description
             ]
         ];
     }

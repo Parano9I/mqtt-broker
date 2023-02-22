@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\UserRoleEnum;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -9,8 +10,11 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function updateRole(User $user): bool
+    public function updateRole(User $user, User $objectUser): bool
     {
-        return $user->role->isOwner();
+        if(!$user->role->isOwner()) return false;
+        if($user->id === $objectUser->id) return false;
+
+        return true;
     }
 }

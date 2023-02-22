@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Group\User;
 
+use App\Rules\GroupRoleRule;
+use App\Rules\NotOwnerGroupRoleRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class RoleUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +26,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'login'    => 'required|string|unique:users|max:150',
-            'email'    => 'required|unique:users|email',
-            'password' => 'required|min:6|confirmed'
+            'role' => ['required', 'int', new GroupRoleRule(), new NotOwnerGroupRoleRule()]
         ];
     }
 }
