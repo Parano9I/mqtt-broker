@@ -6,8 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="6eacba4b-492d-4e29-935c-ebcfd5d5d7a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/OrganizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/OrganizationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/RoleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/RoleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Requests/User/LoginRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Requests/User/LoginRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Resources/OrganizationResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Resources/Organization/OrganizationResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Resources/TokenResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Resources/User/TokenResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Resources/User/UserResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Models/Group.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Models/Group.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Models/GroupUser.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Policies/UserPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Policies/UserPolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,24 +169,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.laravel-idea.search-composer-json": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm": "Docker Compose",
-    "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm": "Docker Compose",
-    "last_opened_file_path": "/home/parano1a/Projects/mqtt-broker/api",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.laravel-idea.search-composer-json&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm&quot;: &quot;Docker Compose&quot;,
+    &quot;credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm&quot;: &quot;Docker Compose&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/parano1a/Projects/mqtt-broker&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/api" />
@@ -203,6 +214,8 @@
       <workItem from="1676358231102" duration="10407000" />
       <workItem from="1676382949898" duration="3173000" />
       <workItem from="1676444566356" duration="76000" />
+      <workItem from="1677055571940" duration="12000" />
+      <workItem from="1677055585273" duration="65000" />
     </task>
     <servers />
   </component>

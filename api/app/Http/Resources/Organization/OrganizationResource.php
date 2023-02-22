@@ -1,26 +1,25 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Organization;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class OrganizationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
     {
         return [
-            'type' => 'user',
-            'id' => $this->id,
+            'type'       => 'organization',
+            'id'         => $this->id,
             'attributes' => [
-                'login' => $this->login,
-                'email' => $this->email,
-                'role' => $this->role
+                'name'        => $this->name,
+                'description' => $this->description,
             ]
         ];
     }

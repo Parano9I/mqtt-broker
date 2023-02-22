@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Group;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,9 +24,8 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'login'    => 'required|string|unique:users|max:150',
-            'email'    => 'required|unique:users|email',
-            'password' => 'required|min:6|confirmed'
+            'title'       => 'required|string|unique:groups',
+            'description' => 'required|string'
         ];
     }
 }

@@ -4,9 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Organization\StoreRequest;
-use App\Http\Resources\OrganizationResource;
+use App\Http\Resources\Organization\OrganizationResource;
 use App\Models\Organization;
-use Illuminate\Http\Request;
 
 class OrganizationController extends Controller
 {

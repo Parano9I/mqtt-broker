@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\User;
 use App\DTOs\TokenDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\LoginRequest;
-use App\Http\Resources\TokenResource;
+use App\Http\Resources\User\TokenResource;
 use App\Models\User;
 use App\Services\Hasher;
 use Illuminate\Http\Request;

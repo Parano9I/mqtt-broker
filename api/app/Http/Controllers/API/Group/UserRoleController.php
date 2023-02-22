@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Controllers\API\Group;
+
+use App\Enums\UserGroupRoleEnum;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Group\User\RoleUpdateRequest;
+use App\Models\Group;
+use App\Models\User;
+use App\Services\RoleService;
+use Spatie\FlareClient\Http\Exceptions\NotFound;
+
+class UserRoleController extends Controller
+{
+    public function index(RoleService $service)
+    {
+        $roles = $service->getAllFormattedRoles(UserGroupRoleEnum::cases());
+
+        return response()->json([
+            'data' => [
+                $roles
+            ]
+        ]);
+    }
+
+    public function update(RoleUpdateRequest $request, Group $group, User $user)
+    {
+        if (is_null($group->user($user))) {
+            throw new NotFound('User not found in group.');
+        }
+
+        $request->validated();
+        $role = UserGroupRoleEnum::tryFrom($request->get('role'));
+
+        $this->authorize('user-role-update', [$group, $user, $role]);
+
+        $data = $group->users()->updateExistingPivot($user, ['role_id' => $role->value]);
+
+        return response()->json('', 204);
+    }
+}

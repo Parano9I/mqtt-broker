@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\API\User;
 
-use App\Enums\UserRoleEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\UpdateRequest;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\User\UserResource;
 use App\Models\User;
 use App\Services\Hasher;
 use App\Services\UserService;
