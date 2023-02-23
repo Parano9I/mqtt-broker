@@ -10,6 +10,12 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
+    public function delete(User $user){
+        if($user->role->isOwner()) return false;
+
+        return true;
+    }
+
     public function updateRole(User $user, User $objectUser): bool
     {
         if(!$user->role->isOwner()) return false;

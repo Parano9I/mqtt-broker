@@ -3,9 +3,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    dd(\App\Models\User::factory()->create());
+});
+
 Route::prefix('auth')->group(function () {
     Route::post('/login', 'App\Http\Controllers\API\User\AuthController@login')->name('auth.login');
-    Route::post('/logout', 'App\Http\Controllers\API\User\AuthController@logout')->middleware('auth:sanctum')->name('auth.logout');
+    Route::get('/logout', 'App\Http\Controllers\API\User\AuthController@logout')->middleware('auth:sanctum')->name('auth.logout');
 });
 
 Route::post('/users', 'App\Http\Controllers\API\User\UserController@store')->name('users.store');
