@@ -53,8 +53,8 @@ class OrganizationController extends Controller
 
         return response()->json([
             'messages' => [
-                'title' => "User with $organization->id id deleted",
-                'detail' => "User with $organization->id id deleted",
+                'title' => 'Organization is deleted',
+                'detail' => 'Organization is deleted',
                 'status' => 200
             ]
         ]);
