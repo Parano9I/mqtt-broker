@@ -1,21 +1,35 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\User;
+namespace Tests\Feature\Http\Controllers\User\Auth;
 
 use App\Models\User;
-use App\Services\Hasher;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
-class AuthTest extends TestCase
+class LoginTest extends TestCase
 {
-    use RefreshDatabase;
 
-    public function test_success_login()
+    use RefreshDatabase;
+    public function test_on_empty_fields()
+    {
+        $credentials = [
+            'login'    => '',
+            'password' => '',
+        ];
+
+        $response = $this->postJson(route('api.auth.login'), $credentials);
+        $response
+            ->assertStatus(422)
+            ->assertJsonValidationErrors([
+                'login'    => Lang::get('validation.required', ['attribute' => 'login']),
+                'password' => Lang::get('validation.required', ['attribute' => 'password'])
+            ]);
+    }
+
+    public function test_success()
     {
         $user = User::factory()->create([
             'login'    => 'Parano1a',
@@ -42,23 +56,7 @@ class AuthTest extends TestCase
             );
     }
 
-    public function test_on_empty_fields_login()
-    {
-        $credentials = [
-            'login'    => '',
-            'password' => '',
-        ];
-
-        $response = $this->postJson(route('api.auth.login'), $credentials);
-        $response
-            ->assertStatus(422)
-            ->assertJsonMissingValidationErrors([
-                'login'    => Lang::get('validation.required', ['attribute' => 'login']),
-                'password' => Lang::get('validation.required', ['attribute' => 'password'])
-            ]);
-    }
-
-    public function test_wrong_password_login()
+    public function test_wrong_password()
     {
         $user = User::factory()->create([
             'login'    => 'Parano1a',
@@ -83,7 +81,7 @@ class AuthTest extends TestCase
             );
     }
 
-    public function test_user_not_exists_login()
+    public function test_user_not_exists()
     {
         $user = User::factory()->create([
             'login'    => 'Parano1a',
@@ -97,32 +95,8 @@ class AuthTest extends TestCase
 
         $response = $this->postJson(route('api.auth.login'), $userCredentials);
         $response
-            ->assertStatus(422)->assertJsonMissingValidationErrors([
+            ->assertStatus(422)->assertJsonValidationErrors([
                 'login' => Lang::get('validation.exists', ['attribute' => 'login'])
             ]);
-    }
-
-    public function test_success_logout()
-    {
-        $user = User::factory()->create();
-        Sanctum::actingAs($user);
-
-        $response = $this->getJson(route('api.auth.logout'));
-        $response
-            ->assertOk()
-            ->assertJson(
-                fn(AssertableJson $json) => $json->has(
-                    'messages',
-                    fn(AssertableJson $json) => $json->where('title', 'Logged out')
-                        ->where('detail', 'Logged out is success')
-                        ->where('status', 200)
-                )
-            );;
-    }
-
-    public function test_unauthorized_logout()
-    {
-        $response = $this->getJson(route('api.auth.logout'));
-        $response->assertUnauthorized();
     }
 }

@@ -83,7 +83,7 @@ class CreateTest extends TestCase
         $response = $this->postJson(route('api.users.store'), $user);
         $response
             ->assertStatus(422)
-            ->assertJsonMissingValidationErrors([
+            ->assertJsonValidationErrors([
                 'login'    => Lang::get('validation.required', ['attribute' => 'login']),
                 'email'    => Lang::get('validation.required', ['attribute' => 'email']),
                 'password' => Lang::get('validation.required', ['attribute' => 'password'])
@@ -107,7 +107,7 @@ class CreateTest extends TestCase
         $response = $this->postJson(route('api.users.store'), $user);
         $response
             ->assertStatus(422)
-            ->assertJsonMissingValidationErrors([
+            ->assertJsonValidationErrors([
                 'login' => Lang::get('validation.unique', ['attribute' => 'login']),
                 'email' => Lang::get('validation.unique', ['attribute' => 'email']),
             ]);

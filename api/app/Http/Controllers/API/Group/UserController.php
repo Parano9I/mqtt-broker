@@ -10,6 +10,7 @@ use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\FlareClient\Http\Exceptions\NotFound;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserController extends Controller
 {
@@ -24,34 +25,36 @@ class UserController extends Controller
 
     public function store(StoreRequest $request, Group $group)
     {
-        $this->authorize('user-create', $group);
-
         $data = $request->validated();
-        $user = User::findOrFail($data['userId']);
+        $user = User::findOrFail($data['user_id']);
 
-        if (!is_null($group->users()->find($user))) return response()->json([
-            'errors' => [
-                'title' => 'Conflict',
-                'detail' => 'The user is already in the group',
-                'status' => 409
-            ]
-        ], 409);
+        $this->authorize('user-create', [$group, $user]);
 
-        $group->users()->attach($user, ['role_id' => $data['role']]);
+        if (!is_null($group->users()->find($user))) {
+            return response()->json([
+                'errors' => [
+                    'title'  => 'Conflict',
+                    'detail' => 'Target user exists in group',
+                    'status' => 409
+                ]
+            ], 409);
+        }
 
-        return response()->json('', 204);
+        $group->users()->attach($user, ['role_id' => $data['role_id']]);
+
+        return response()->json([], 204);
     }
 
     public function destroy(Group $group, User $user)
     {
-        if(is_null($group->user($user))) {
-            throw new NotFound('User not found in group.');
+        if (is_null($group->user($user))) {
+            throw new NotFoundHttpException('User not found in group.');
         }
 
         $this->authorize('user-delete', [$group, $user]);
 
         $group->users()->detach($user);
 
-        return response()->json('', 204);
+        return response()->json([], 204);
     }
 }

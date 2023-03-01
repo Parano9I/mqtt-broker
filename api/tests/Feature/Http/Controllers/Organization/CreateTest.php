@@ -30,7 +30,7 @@ class CreateTest extends TestCase
         $response = $this->postJson(route('api.organizations.store'), $data);
         $response
             ->assertStatus(422)
-            ->assertJsonMissingValidationErrors([
+            ->assertJsonValidationErrors([
                 'name'        => Lang::get('validation.required', ['attribute' => 'name']),
                 'description' => Lang::get('validation.required', ['attribute' => 'description']),
             ]);

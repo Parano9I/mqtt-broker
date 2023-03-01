@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\User\Role;
 
-use App\Rules\NotRolesRule;
+use App\Rules\NotOwnerRoleRule;
 use App\Rules\RoleRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -15,7 +15,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'role' => ['required', 'string', RoleRule::class, new NotRolesRule(['owner'])]
+            'role' => ['required', 'string', new RoleRule(), new NotOwnerRoleRule()]
         ];
     }
 }

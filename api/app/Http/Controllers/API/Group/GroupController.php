@@ -56,10 +56,8 @@ class GroupController extends Controller
     {
         $this->authorize('delete', $group);
 
-        $group->delete();
+        $group->deleteOrFail();
 
-        return response()->json([
-            'data' => new GroupResource($group)
-        ]);
+        return response()->json([], 204);
     }
 }

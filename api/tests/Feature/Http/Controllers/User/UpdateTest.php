@@ -4,9 +4,7 @@ namespace Tests\Feature\Http\Controllers\User;
 
 use App\Enums\UserRoleEnum;
 use App\Models\User;
-use App\Services\Hasher;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Sanctum\Sanctum;
@@ -27,7 +25,7 @@ class UpdateTest extends TestCase
         $response = $this->postJson(route('api.users.update'), $user);
         $response
             ->assertStatus(422)
-            ->assertJsonMissingValidationErrors([
+            ->assertJsonValidationErrors([
                 'login' => Lang::get('validation.required', ['attribute' => 'login']),
                 'email' => Lang::get('validation.required', ['attribute' => 'email']),
             ]);

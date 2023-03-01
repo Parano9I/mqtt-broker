@@ -9,6 +9,7 @@ use App\Models\Group;
 use App\Models\User;
 use App\Services\RoleService;
 use Spatie\FlareClient\Http\Exceptions\NotFound;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserRoleController extends Controller
 {
@@ -26,11 +27,11 @@ class UserRoleController extends Controller
     public function update(RoleUpdateRequest $request, Group $group, User $user)
     {
         if (is_null($group->user($user))) {
-            throw new NotFound('User not found in group.');
+            throw new NotFoundHttpException('User not found in group.');
         }
 
         $request->validated();
-        $role = UserGroupRoleEnum::tryFrom($request->get('role'));
+        $role = UserGroupRoleEnum::tryFrom($request->get('role_id'));
 
         $this->authorize('user-role-update', [$group, $user, $role]);
 

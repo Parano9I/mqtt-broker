@@ -26,7 +26,7 @@ class RoleUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'role' => ['required', 'int', new GroupRoleRule(), new NotOwnerGroupRoleRule()]
+            'role_id' => ['required', 'int', new GroupRoleRule(), new NotOwnerGroupRoleRule()]
         ];
     }
 }
