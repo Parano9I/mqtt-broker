@@ -16,15 +16,7 @@ class UserController extends Controller
 
     public function __construct(
         private UserService $userService
-    )
-    {
-    }
-
-    public function index()
-    {
-        return response()->json([
-            'data' => UserResource::collection(User::paginate(10))
-        ]);
+    ) {
     }
 
     public function store(StoreRequest $request, Hasher $hasher)
@@ -32,40 +24,38 @@ class UserController extends Controller
         $data = $request->validated();
 
         $user = User::create([
-            'login' => $data['login'],
-            'email' => $data['email'],
+            'login'    => $data['login'],
+            'email'    => $data['email'],
             'password' => $hasher->hash($data['password']),
-            'role' => $this->userService->getDefaultRole()
+            'role'     => $this->userService->getDefaultRole()
         ]);
 
         return response()->json([
-            'data' => [
-                new UserResource($user)
-            ]
+            'data' => new UserResource($user)
         ]);
     }
 
     public function update(UpdateRequest $request)
     {
-        $user = $request->user()->update($request->validated());
+        $user = $request->user();
+        $user->update($request->validated());
 
         return response()->json([
-            'data' => [
-                new UserResource($user)
-            ]
+            'data' => new UserResource($user)
         ]);
     }
 
-    public
-    function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
-        $user = $request->user()->update($request->validated());
+        $this->authorize('delete', User::class);
+
+        $user = $request->user();
         $user->deleteOrFail();
 
         return response()->json([
-            'messages' => [
-                'title' => "User with $id id deleted",
-                'detail' => "User with $id id deleted",
+            'message' => [
+                'title'  => "User deleted",
+                'detail' => "User deleted from organization",
                 'status' => 200
             ]
         ]);

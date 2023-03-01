@@ -25,14 +25,13 @@ class RoleController extends Controller
 
     public function update(StoreRequest $request, User $user)
     {
+        $request->validated();
+
         $this->authorize('update-role', $user);
 
-        $request->validated();
         $role = UserRoleEnum::tryFrom($request->get('role'));
         $user->update(['role' => $role]);
 
-        return response()->json([
-            'data' => new UserResource($user)
-        ]);
+        return response()->json([], 204);
     }
 }

@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,6 @@ class UpdateRequest extends FormRequest
         return [
             'login'    => 'required|string|max:150',
             'email'    => 'required|email',
-            'password' => 'required|min:6|confirmed'
         ];
     }
 }

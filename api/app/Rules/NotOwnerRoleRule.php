@@ -2,31 +2,31 @@
 
 namespace App\Rules;
 
+use App\Enums\UserGroupRoleEnum;
 use App\Enums\UserRoleEnum;
 use Illuminate\Contracts\Validation\Rule;
 
-class NotRolesRule implements Rule
+class NotOwnerRoleRule implements Rule
 {
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct(array $roles)
+    public function __construct()
     {
-        $this->roles = $roles;
     }
 
     /**
      * Determine if the validation rule passes.
      *
-     * @param string $attribute
-     * @param mixed $value
+     * @param  string  $attribute
+     * @param  mixed  $value
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        return !in_array($value, $this->roles);
+        return $value !== UserRoleEnum::OWNER->value;
     }
 
     /**
@@ -36,6 +36,6 @@ class NotRolesRule implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'Cannot be assigned as an owner.';
     }
 }

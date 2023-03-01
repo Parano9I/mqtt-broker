@@ -27,8 +27,13 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'userId' => 'required|int|exists:users,id',
-            'role'   => ['required', 'int', new GroupRoleRule(), new NotOwnerGroupRoleRule()]
+            'user_id' => 'required|int|exists:users,id',
+            'role_id' => [
+                'required',
+                'int',
+                new GroupRoleRule(),
+                new NotOwnerGroupRoleRule()
+            ]
         ];
     }
 }

@@ -32,7 +32,7 @@ class AuthController extends Controller
         $token->payload = $user->createToken('access_token')->plainTextToken;
 
         return response([
-            new TokenResource($token)
+            'data' => new TokenResource($token)
         ], 201);
 
     }
