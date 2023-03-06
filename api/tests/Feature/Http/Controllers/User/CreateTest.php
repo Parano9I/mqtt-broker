@@ -14,9 +14,156 @@ class CreateTest extends TestCase
 
     use RefreshDatabase;
 
-    protected function setUp(): void
+    public function validation_invalid_casts()
     {
-        parent::setUp();
+        return [
+            'empty_login'                         => [
+                [
+                    'login'                 => '',
+                    'email'                 => 'email@gmail.com',
+                    'password'              => 'password',
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'login_int_type'                      => [
+                [
+                    'login'                 => 0,
+                    'email'                 => 'email@gmail.com',
+                    'password'              => 'password',
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'login_float_type'                    => [
+                [
+                    'login'                 => 0.0,
+                    'email'                 => 'email@gmail.com',
+                    'password'              => 'password',
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'login_arr_type'                      => [
+                [
+                    'login'                 => [],
+                    'email'                 => 'email@gmail.com',
+                    'password'              => 'password',
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'empty_email'                         => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => '',
+                    'password'              => 'password',
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'email_int_type'                      => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 0,
+                    'password'              => 'password',
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'email_float_type'                    => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 0.0,
+                    'password'              => 'password',
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'email_arr_type'                      => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => [],
+                    'password'              => 'password',
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'empty_confirm_password'              => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 'email@gmail.com',
+                    'password'              => 'password',
+                    'password_confirmation' => ''
+                ]
+            ],
+            'empty_password'                      => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 'email@gmail.com',
+                    'password'              => '',
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'password_int_type'                   => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 'email@gmail.com',
+                    'password'              => 0,
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'password_float_type'                 => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 'email@gmail.com',
+                    'password'              => 0.0,
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'password_arr_type'                   => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 'email@gmail.com',
+                    'password'              => [],
+                    'password_confirmation' => 'password'
+                ]
+            ],
+            'password_confirm_int_type'           => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 'email@gmail.com',
+                    'password'              => 'password',
+                    'password_confirmation' => 0
+                ]
+            ],
+            'password_confirm_float_type'         => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 'email@gmail.com',
+                    'password'              => 'password',
+                    'password_confirmation' => 0.0
+                ]
+            ],
+            'password_confirm_arr_type'           => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 'email@gmail.com',
+                    'password'              => 'password',
+                    'password_confirmation' => []
+                ]
+            ],
+            'password_confirm_not_equal_password' => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 'email@gmail.com',
+                    'password'              => 'password',
+                    'password_confirmation' => 'pass'
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider validation_invalid_casts
+     */
+    public function test_cannot_store_with_invalid_data($formInput)
+    {
+        $response = $this->postJson(route('api.users.store'), $formInput);
+        $response->assertStatus(422);
     }
 
     public function test_success_create_first_user_with_owner_role()
@@ -69,25 +216,6 @@ class CreateTest extends TestCase
                         )
                 )
             );
-    }
-
-    public function test_on_empty_fields()
-    {
-        $user = [
-            'login'                 => '',
-            'email'                 => '',
-            'password'              => '',
-            'password_confirmation' => ''
-        ];
-
-        $response = $this->postJson(route('api.users.store'), $user);
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors([
-                'login'    => Lang::get('validation.required', ['attribute' => 'login']),
-                'email'    => Lang::get('validation.required', ['attribute' => 'email']),
-                'password' => Lang::get('validation.required', ['attribute' => 'password'])
-            ]);
     }
 
     public function test_on_unique_login_and_email_fields()

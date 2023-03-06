@@ -15,20 +15,71 @@ class UpdateTest extends TestCase
 
     use RefreshDatabase;
 
-    public function test_on_empty_fields()
+    public function validation_invalid_casts()
     {
-        $user = [
-            'login' => '',
-            'email' => ''
+        return [
+            'empty_login'      => [
+                [
+                    'login'    => '',
+                    'password' => 'password',
+                ]
+            ],
+            'login_int_type'   => [
+                [
+                    'login'    => 0,
+                    'password' => 'password',
+                ]
+            ],
+            'login_float_type' => [
+                [
+                    'login'    => 0.0,
+                    'password' => 'password',
+                ]
+            ],
+            'login_arr_type'   => [
+                [
+                    'login'    => [],
+                    'password' => 'password',
+                ]
+            ],
+            'empty_email'      => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => '',
+                ]
+            ],
+            'email_int_type'   => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 0,
+                ]
+            ],
+            'email_float_type' => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => 0.0,
+                ]
+            ],
+            'email_arr_type'   => [
+                [
+                    'login'                 => 'Parano1a',
+                    'email'                 => [],
+                ]
+            ]
         ];
+    }
 
-        $response = $this->postJson(route('api.users.update'), $user);
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors([
-                'login' => Lang::get('validation.required', ['attribute' => 'login']),
-                'email' => Lang::get('validation.required', ['attribute' => 'email']),
-            ]);
+    /**
+     * @test
+     * @dataProvider validation_invalid_casts
+     */
+    public function test_cannot_update_with_invalid_data($formInput)
+    {
+        $user = User::factory()->create();
+        Sanctum::actingAs($user);
+
+        $response = $this->patchJson(route('api.users.update'), $formInput);
+        $response->assertStatus(422);
     }
 
     public function test_unauthorized()

@@ -50,3 +50,11 @@ Route::prefix('groups')->middleware('auth:sanctum')->group(function () {
         'groups.users.roles.update'
     );
 });
+
+Route::prefix('groups/{group}/topics')->middleware('auth:sanctum')->name('groups.')->group(function () {
+    Route::get('/', '\App\Http\Controllers\API\TopicController@index')->name('topics.index');
+    Route::get('/', '\App\Http\Controllers\API\TopicController@show')->name('topics.show');
+    Route::post('/', '\App\Http\Controllers\API\TopicController@store')->name('topics.store');
+    Route::patch('/{topic}', 'App\Http\Controllers\API\TopicController@update')->name('topics.update');
+    Route::delete('/{topic}', 'App\Http\Controllers\API\TopicController@destroy')->name('topics.destroy');
+});

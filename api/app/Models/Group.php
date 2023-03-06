@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserGroupRoleEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,8 +32,10 @@ class Group extends Model
         return $this->users()->find($user);
     }
 
-    public function getUserRole(User $user)
+    public function getUserRole(User $user): null|UserGroupRoleEnum
     {
-        return $this->user($user)->pivot->role_id;
+        $user = $this->users()->find($user);
+
+        return empty($user) ? null : $user->pivot->role_id;
     }
 }
