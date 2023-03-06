@@ -16,6 +16,59 @@ class UpdateTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function validation_invalid_casts()
+    {
+        return [
+            'empty_role_id'        => [
+                [
+                    'role_id'
+                ]
+            ],
+            'role_id_type_string'  => [
+                [
+                    'role_id' => '0'
+                ]
+            ],
+            'role_id_type_decimal' => [
+                [
+                    'role_id' => 1.2
+                ]
+            ],
+            'role_id_type_arr'     => [
+                [
+                    'role_id' => []
+                ]
+            ],
+            'owner_role_is_banned' => [
+                [
+                    'role_id' => UserGroupRoleEnum::OWNER
+                ]
+            ],
+            'role_is_not_exists'   => [
+                [
+                    'role_id' => 17
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider validation_invalid_casts
+     */
+    public function test_cannot_update_with_invalid_data($formInput)
+    {
+        $user = User::factory()->create();
+        $targetUser = User::factory()->create(['role' => UserRoleEnum::COMMON]);
+        Sanctum::actingAs($user);
+
+        $group = Group::factory()->create();
+
+        $response = $this->patchJson(route('api.groups.users.roles.update', [$group->id, $targetUser->id]), $formInput);
+        $response->assertStatus(422);
+    }
+
+
     public function test_unauthorized()
     {
         $targetUser = User::factory()->create(['role' => UserRoleEnum::COMMON]);
@@ -23,67 +76,6 @@ class UpdateTest extends TestCase
 
         $response = $this->patchJson(route('api.groups.users.roles.update', [$group->id, $targetUser->id]));
         $response->assertUnauthorized();
-    }
-
-    public function test_empty_post_data()
-    {
-        $user = User::factory()->create();
-        $targetUser = User::factory()->create(['role' => UserRoleEnum::COMMON]);
-        Sanctum::actingAs($user);
-
-        $group = Group::factory()->create();
-
-        $data = [
-            'role_id' => ''
-        ];
-
-        $response = $this->patchJson(route('api.groups.users.roles.update', [$group->id, $targetUser->id]), $data);
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors([
-                'role_id' => Lang::get('validation.required', ['attribute' => 'role id']),
-            ]);
-    }
-
-    public function test_target_role_id_is_not_exists()
-    {
-        $user = User::factory()->create();
-        $targetUser = User::factory()->create(['role' => UserRoleEnum::COMMON]);
-
-        Sanctum::actingAs($user);
-
-        $group = Group::factory()->create();
-
-        $data = [
-            'role_id' => 12
-        ];
-
-        $response = $this->patchJson(route('api.groups.users.roles.update', [$group->id, $targetUser->id]), $data);
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors([
-                'role_id' => 'Such a role does not exist'
-            ]);
-    }
-
-    public function test_target_owner_role_ban()
-    {
-        $user = User::factory()->create();
-        $targetUser = User::factory()->create(['role' => UserRoleEnum::COMMON]);
-        Sanctum::actingAs($user);
-
-        $group = Group::factory()->create();
-
-        $data = [
-            'role_id' => UserGroupRoleEnum::OWNER
-        ];
-
-        $response = $this->patchJson(route('api.groups.users.roles.update', [$group->id, $targetUser->id]), $data);
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors([
-                'role_id' => 'Cannot be assigned as an owner.'
-            ]);
     }
 
     public function test_target_user_must_be_in_group()

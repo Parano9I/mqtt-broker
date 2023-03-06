@@ -26,11 +26,12 @@ class UserRoleController extends Controller
 
     public function update(RoleUpdateRequest $request, Group $group, User $user)
     {
+        $request->validated();
+
         if (is_null($group->user($user))) {
             throw new NotFoundHttpException('User not found in group.');
         }
 
-        $request->validated();
         $role = UserGroupRoleEnum::tryFrom($request->get('role_id'));
 
         $this->authorize('user-role-update', [$group, $user, $role]);

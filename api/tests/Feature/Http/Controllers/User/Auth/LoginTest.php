@@ -13,32 +13,65 @@ class LoginTest extends TestCase
 {
 
     use RefreshDatabase;
-    public function test_on_empty_fields()
-    {
-        $credentials = [
-            'login'    => '',
-            'password' => '',
-        ];
 
-        $response = $this->postJson(route('api.auth.login'), $credentials);
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors([
-                'login'    => Lang::get('validation.required', ['attribute' => 'login']),
-                'password' => Lang::get('validation.required', ['attribute' => 'password'])
-            ]);
+    private User $user;
+    private string $rawPassword = 'password';
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->create();
+    }
+
+    public function validation_invalid_casts()
+    {
+        return [
+            'empty_login' => [
+                ['login' => '', 'password' => 'password'],
+            ],
+            'empty_password' => [
+                ['login' => 'login', 'password' => ''],
+            ],
+            'login_int_type' => [
+                ['login' => 0, 'password' => 'password'],
+            ],
+            'login_float_type' => [
+                ['login' => 0.0, 'password' => 'password'],
+            ],
+            'login_arr_type' => [
+                ['login' => [], 'password' => 'password'],
+            ],
+            'login_not_exists' => [
+                ['login' => 'login', 'password' => 'password'],
+            ],
+            'password_int_type' => [
+                ['login' => 'Parano1a', 'password' => 0],
+            ],
+            'password_float_type' => [
+                ['login' => 'Parano1a', 'password' => 0.0],
+            ],
+            'password_arr_type' => [
+                ['login' => 'Parano1a', 'password' => []],
+            ],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider validation_invalid_casts
+     */
+    public function test_cannot_store_with_invalid_data($formInput)
+    {
+        $response = $this->postJson(route('api.auth.login'), $formInput);
+        $response->assertStatus(422);
     }
 
     public function test_success()
     {
-        $user = User::factory()->create([
-            'login'    => 'Parano1a',
-            'email'    => 'parano1a@gmail.com',
-        ]);
-
         $credentials = [
-            'login'    => 'Parano1a',
-            'password' => 'password'
+            'login'    => $this->user->login,
+            'password' => $this->rawPassword
         ];
 
         $response = $this->postJson(route('api.auth.login'), $credentials);
@@ -58,17 +91,12 @@ class LoginTest extends TestCase
 
     public function test_wrong_password()
     {
-        $user = User::factory()->create([
-            'login'    => 'Parano1a',
-            'email'    => 'parano1a@gmail.com',
-        ]);
-
-        $userCredentials = [
-            'login'    => 'Parano1a',
-            'password' => 'passwordTest'
+        $credentials = [
+            'login'    => $this->user->login,
+            'password' => 'wrongPassword'
         ];
 
-        $response = $this->postJson(route('api.auth.login'), $userCredentials);
+        $response = $this->postJson(route('api.auth.login'), $credentials);
         $response
             ->assertStatus(401)
             ->assertJson(
@@ -79,24 +107,5 @@ class LoginTest extends TestCase
                         ->where('status', 401)
                 )
             );
-    }
-
-    public function test_user_not_exists()
-    {
-        $user = User::factory()->create([
-            'login'    => 'Parano1a',
-            'email'    => 'parano1a@gmail.com',
-        ]);
-
-        $userCredentials = [
-            'login'    => 'wrongLogin',
-            'password' => 'password'
-        ];
-
-        $response = $this->postJson(route('api.auth.login'), $userCredentials);
-        $response
-            ->assertStatus(422)->assertJsonValidationErrors([
-                'login' => Lang::get('validation.exists', ['attribute' => 'login'])
-            ]);
     }
 }

@@ -19,31 +19,79 @@ class UpdateTest extends TestCase
 
     use RefreshDatabase;
 
-    public function test_unauthorized()
+    public function validation_invalid_casts()
     {
-        $response = $this->patchJson(route('api.groups.update', [1]));
-        $response->assertUnauthorized();
+        return [
+            'empty_name'             => [
+                [
+                    'title'        => '',
+                    'description' => 'description',
+                ]
+            ],
+            'name_int_type'          => [
+                [
+                    'title'        => 0,
+                    'description' => 'description',
+                ]
+            ],
+            'name_float_type'        => [
+                [
+                    'title'        => 0.0,
+                    'description' => 'description',
+                ]
+            ],
+            'name_arr_type'          => [
+                [
+                    'title'        => [],
+                    'description' => 'description',
+                ]
+            ],
+            'empty_description'      => [
+                [
+                    'title'        => 'title',
+                    'description' => '',
+                ]
+            ],
+            'description_int_type'   => [
+                [
+                    'title'        => 'title',
+                    'description' => 0,
+                ]
+            ],
+            'description_float_type' => [
+                [
+                    'title'        => 'title',
+                    'description' => 0.0,
+                ]
+            ],
+            'description_arr_type'   => [
+                [
+                    'title'        => 'title',
+                    'description' => [],
+                ]
+            ]
+        ];
     }
 
-    public function test_empty_post_data()
+    /**
+     * @test
+     * @dataProvider validation_invalid_casts
+     */
+    public function test_cannot_update_with_invalid_data($formInput)
     {
         $user = User::factory()->create();
         Sanctum::actingAs($user);
 
         $group = Group::factory()->create();
 
-        $data = [
-            'title'       => '',
-            'description' => ''
-        ];
+        $response = $this->patchJson(route('api.groups.update', [$group->id]), $formInput);
+        $response->assertStatus(422);
+    }
 
-        $response = $this->patchJson(route('api.groups.update', [$group->id]), $data);
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors([
-                'title'       => Lang::get('validation.required', ['attribute' => 'title']),
-                'description' => Lang::get('validation.required', ['attribute' => 'description']),
-            ]);
+    public function test_unauthorized()
+    {
+        $response = $this->patchJson(route('api.groups.update', [1]));
+        $response->assertUnauthorized();
     }
 
     public function test_not_found()

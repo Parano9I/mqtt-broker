@@ -17,6 +17,75 @@ class UpdateTest extends TestCase
 
     use RefreshDatabase;
 
+    public function validation_invalid_casts()
+    {
+        return [
+            'empty_name'             => [
+                [
+                    'name'        => '',
+                    'description' => 'description',
+                ]
+            ],
+            'name_int_type'          => [
+                [
+                    'name'        => 0,
+                    'description' => 'description',
+                ]
+            ],
+            'name_float_type'        => [
+                [
+                    'name'        => 0.0,
+                    'description' => 'description',
+                ]
+            ],
+            'name_arr_type'          => [
+                [
+                    'name'        => [],
+                    'description' => 'description',
+                ]
+            ],
+            'empty_description'      => [
+                [
+                    'name'        => 'name',
+                    'description' => '',
+                ]
+            ],
+            'description_int_type'   => [
+                [
+                    'name'        => 'name',
+                    'description' => 0,
+                ]
+            ],
+            'description_float_type' => [
+                [
+                    'name'        => 'name',
+                    'description' => 0.0,
+                ]
+            ],
+            'description_arr_type'   => [
+                [
+                    'name'        => 'name',
+                    'description' => [],
+                ]
+            ],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider validation_invalid_casts
+     */
+    public function test_cannot_update_with_invalid_data($formInput)
+    {
+        $user = User::factory()->create();
+        Sanctum::actingAs($user);
+
+        $organization = Organization::factory()->create();
+
+        $response = $this->patchJson(route('api.organizations.update', [$organization->id]), $formInput);
+        $response->assertStatus(422);
+    }
+
     public function test_empty_patch_data()
     {
         $user = User::factory()->create();

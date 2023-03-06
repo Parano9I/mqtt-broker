@@ -20,29 +20,77 @@ class CreateTest extends TestCase
 
     use RefreshDatabase;
 
-    public function test_unauthorized()
+    public function validation_invalid_casts()
     {
-        $response = $this->postJson(route('api.groups.store'));
-        $response->assertUnauthorized();
+        return [
+            'empty_name'             => [
+                [
+                    'title'        => '',
+                    'description' => 'description',
+                ]
+            ],
+            'name_int_type'          => [
+                [
+                    'title'        => 0,
+                    'description' => 'description',
+                ]
+            ],
+            'name_float_type'        => [
+                [
+                    'title'        => 0.0,
+                    'description' => 'description',
+                ]
+            ],
+            'name_arr_type'          => [
+                [
+                    'title'        => [],
+                    'description' => 'description',
+                ]
+            ],
+            'empty_description'      => [
+                [
+                    'title'        => 'title',
+                    'description' => '',
+                ]
+            ],
+            'description_int_type'   => [
+                [
+                    'title'        => 'title',
+                    'description' => 0,
+                ]
+            ],
+            'description_float_type' => [
+                [
+                    'title'        => 'title',
+                    'description' => 0.0,
+                ]
+            ],
+            'description_arr_type'   => [
+                [
+                    'title'        => 'title',
+                    'description' => [],
+                ]
+            ]
+        ];
     }
 
-    public function test_empty_post_data()
+    /**
+     * @test
+     * @dataProvider validation_invalid_casts
+     */
+    public function test_cannot_store_with_invalid_data($formInput)
     {
         $user = User::factory()->create();
         Sanctum::actingAs($user);
 
-        $data = [
-            'title'       => '',
-            'description' => ''
-        ];
+        $response = $this->postJson(route('api.groups.store'), $formInput);
+        $response->assertStatus(422);
+    }
 
-        $response = $this->postJson(route('api.groups.store'), $data);
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors([
-                'title'       => Lang::get('validation.required', ['attribute' => 'title']),
-                'description' => Lang::get('validation.required', ['attribute' => 'description']),
-            ]);
+    public function test_unauthorized()
+    {
+        $response = $this->postJson(route('api.groups.store'));
+        $response->assertUnauthorized();
     }
 
     public function test_owner_can_create_group()
@@ -85,8 +133,8 @@ class CreateTest extends TestCase
         $response->assertOk();
         $this->assertDatabaseHas('groups_users', [
             'group_id' => $response->original['data']->id,
-            'user_id' => $user->id,
-            'role_id' => UserGroupRoleEnum::OWNER
+            'user_id'  => $user->id,
+            'role_id'  => UserGroupRoleEnum::OWNER
         ]);
     }
 
