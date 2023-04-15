@@ -2,14 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
+use App\Enums\UserRoleEnum;
+use App\Models\Group;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RoleSeeder extends Seeder
+class UserSeeder extends Seeder
 {
-
-    private array $roles = ['owner', 'group_admin', 'common'];
 
     /**
      * Run the database seeds.
@@ -18,10 +18,6 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        foreach ($this->roles as $role){
-            Role::create([
-                'name' => $role
-            ]);
-        }
+        User::factory(20)->create();
     }
 }

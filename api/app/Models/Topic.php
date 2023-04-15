@@ -18,4 +18,9 @@ class Topic extends Model
     {
         return $this->belongsTo(Group::class);
     }
+
+    public function sensors()
+    {
+        return $this->belongsToMany(Sensor::class);
+    }
 }

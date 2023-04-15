@@ -59,7 +59,7 @@ class DeleteTest extends TestCase
         $user = User::factory()->create(['role' => UserRoleEnum::OWNER]);
         Sanctum::actingAs($user);
 
-        $response = $this->deleteJson(route('api.groups.topics.destroy', [$this->group->id, 86]));
+        $response = $this->deleteJson(route('api.groups.topics.destroy', [$this->group->id, $this->topics->id + 20]));
         $response->assertNotFound();
     }
 

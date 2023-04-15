@@ -25,7 +25,7 @@ class RoleProvider extends Base
     {
         $roles = UserGroupRoleEnum::cases();
 
-        if (Group::users()->count()) {
+        if ($group->users()->count()) {
             return $roles[rand(1, count($roles) - 1)]->value;
         } else {
             return UserGroupRoleEnum::OWNER->value;

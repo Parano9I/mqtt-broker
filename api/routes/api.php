@@ -54,14 +54,19 @@ Route::prefix('groups/{group}/topics')->middleware('auth:sanctum')->name('groups
     Route::delete('/{topic}', 'App\Http\Controllers\API\TopicController@destroy')->name('topics.destroy');
 });
 
-Route::prefix('/topics/{topic}/sensors')->middleware('auth:sanctum')->name('topics.')->group(function () {
-    Route::get('/', 'App\Http\Controllers\API\Sensor\SensorController@index')->name('sensors.index');
-    Route::get('/{sensor}', 'App\Http\Controllers\API\Sensor\SensorController@show')->name('sensors.show');
-    Route::post('/', 'App\Http\Controllers\API\Sensor\SensorController@store')->name('sensors.store');
-    Route::patch('/{sensor}', 'App\Http\Controllers\API\Sensor\SensorController@update')->name('sensors.update');
-    Route::delete('/{sensor}', 'App\Http\Controllers\API\Sensor\SensorController@destroy')->name('sensors.destroy');
-    Route::get('/{sensor}/secret', 'App\Http\Controllers\API\Sensor\SecretController@index')
-        ->name('sensors.secret.index');
-    Route::get('/{sensor}/secret/generate', 'App\Http\Controllers\API\Sensor\SecretController@index')
-        ->name('sensors.secret.generate');
-});
+Route::prefix('groups/{group}/topics/{topic}/sensors')->middleware('auth:sanctum')->name('groups.topics.')
+    ->group(function () {
+        Route::get('/', 'App\Http\Controllers\API\Sensor\SensorController@index')->name('sensors.index');
+        Route::get('/{sensor}', 'App\Http\Controllers\API\Sensor\SensorController@show')->name('sensors.show');
+        Route::post('/', 'App\Http\Controllers\API\Sensor\SensorController@store')->name('sensors.store');
+        Route::patch('/{sensor}', 'App\Http\Controllers\API\Sensor\SensorController@update')->name(
+            'sensors.update'
+        );
+        Route::delete('/{sensor}', 'App\Http\Controllers\API\Sensor\SensorController@destroy')->name(
+            'sensors.destroy'
+        );
+        Route::get('/{sensor}/secret', 'App\Http\Controllers\API\Sensor\SecretController@index')
+            ->name('sensors.secret.index');
+        Route::get('/{sensor:uuid}/secret/generate', 'App\Http\Controllers\API\Sensor\SecretController@index')
+            ->name('sensors.secret.generate');
+    });
