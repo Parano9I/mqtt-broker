@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6eacba4b-492d-4e29-935c-ebcfd5d5d7a4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mqtt-broker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mqtt-broker.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Faker/RoleProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Faker/RoleProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/Sensor/SensorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/Sensor/SensorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Models/Topic.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Models/Topic.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/api/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/factories/TopicFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/seeders/RoleSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Sensor/CreateTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Sensor/CreateTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Topic/CreateTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Topic/CreateTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Topic/DeleteTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Topic/DeleteTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/broker/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/broker/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/broker/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/broker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/broker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/nginx/conf.d/app.conf" beforeDir="false" afterPath="$PROJECT_DIR$/docker/nginx/conf.d/app.conf" afterDir="false" />
-    </list>
+    <list default="true" id="6eacba4b-492d-4e29-935c-ebcfd5d5d7a4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -201,8 +177,8 @@
     "WebServerToolWindowFactoryState": "false",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm": "Docker Compose",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm": "Docker Compose",
-    "git-widget-placeholder": "Feature/Api/CreateSensorCRUD",
-    "last_opened_file_path": "/home/parano1a/Projects/nativo",
+    "git-widget-placeholder": "develop",
+    "last_opened_file_path": "/home/parano1a/Projects/mqtt-broker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -271,6 +247,7 @@
       <workItem from="1680927802657" duration="27059000" />
       <workItem from="1681013273312" duration="11906000" />
       <workItem from="1681107199475" duration="45000" />
+      <workItem from="1681533787818" duration="317000" />
     </task>
     <servers />
   </component>
