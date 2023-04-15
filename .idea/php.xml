@@ -121,6 +121,7 @@
       <path value="$PROJECT_DIR$/api/vendor/tijsverkoyen/css-to-inline-styles" />
       <path value="$PROJECT_DIR$/api/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/api/vendor/graham-campbell/result-type" />
+      <path value="$PROJECT_DIR$/api/vendor/kalnoy/nestedset" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

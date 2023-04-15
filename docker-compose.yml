@@ -6,13 +6,19 @@ networks:
 
 services:
   nginx:
-    image: nginx:1.23.3
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
     restart: always
     container_name: nginx
+    depends_on:
+      - api
+      - broker
     ports:
-      - 8080:80
+      - 80:80
+      - 1883:1883
     volumes:
-      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - mqtt-project
 
@@ -21,13 +27,26 @@ services:
       context: ./api
       dockerfile: ../docker/api/Dockerfile
     container_name: api
-    ports:
-      - 9000:9000
+    depends_on:
+      - influxdb
+      - mysql
     volumes:
       - ./api/:/var/www/
       - ./docker/api/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    environment:
+      APP_NAME: 'mqtt_broker'
+      APP_ENV: 'local'
+      APP_KEY: '${API_KEY}'
+      APP_DEBUG: 'true'
+      APP_URL: '${API_URL}'
+      DB_CONNECTION: 'mysql'
+      DB_HOST: 'mysql'
+      DB_PORT: '3306'
+      DB_DATABASE: '${MYSQL_DATABASE}'
+      DB_USERNAME: '${MYSQL_USERNAME}'
+      DB_PASSWORD: '${MYSQL_PASSWORD}'
     networks:
       - mqtt-project
 
@@ -39,8 +58,21 @@ services:
     restart: always
     volumes:
       - ./broker:/usr/src/app
-    ports:
-      - 8883:8883
+    depends_on:
+      - influxdb
+      - mysql
+    environment:
+      MQTT_PORT: '${BROKER_PORT}'
+      MYSQL_HOST: 'mysql'
+      MYSQL_PORT: '3306'
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+      MYSQL_USERNAME: '${MYSQL_USERNAME}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+      INFLUXDB_HOST: 'influxdb'
+      INFLUXDB_TOKEN: '${INFLUXDB_BROKER_TOKEN}'
+      INFLUXDB_DB: '${INFLUXDB_DB}'
+      INFLUXDB_ORG: '${INFLUXDB_INIT_ORG}'
+      INFLUXDB_BUCKET: '${INFLUXDB_INIT_BUCKET}'
     networks:
       - mqtt-project
 
@@ -48,16 +80,17 @@ services:
     image: mysql:8.0.32
     container_name: mysql
     restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: '${MYSQL_USERNAME}'
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+    user: '1000:1000'
     ports:
       - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: 'root'
-      MYSQL_ROOT_HOST: '%'
-      MYSQL_DATABASE: 'mqtt-broker'
-      MYSQL_PASSWORD: 'mqtt'
-    user: '1000:1000'
     volumes:
-      - ./docker/mysql/dump:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     networks:
       - mqtt-project
 
@@ -65,6 +98,20 @@ services:
     image: influxdb:2.6-alpine
     user: '1000:1000'
     volumes:
-      - ./docker/influxdb/data:/var/lib/influxdb2:rw
+      - influx_db_data:/var/lib/influxdb2:rw
     ports:
-      - "8086:8086"
+      - 8086:8086
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: 'setup'
+      DOCKER_INFLUXDB_INIT_USERNAME: '${INFLUXDB_ADMIN_USER}'
+      DOCKER_INFLUXDB_INIT_PASSWORD: '${INFLUXDB_ADMIN_PASSWORD}'
+      DOCKER_INFLUXDB_INIT_ORG: '${INFLUXDB_INIT_ORG}'
+      DOCKER_INFLUXDB_INIT_BUCKET: '${INFLUXDB_INIT_BUCKET}'
+      INFLUXDB_DB: '${INFLUXDB_DB}'
+      INFLUX_TOKEN: '${INFLUXDB_BROKER_TOKEN}'
+    networks:
+      - mqtt-project
+
+volumes:
+  mysql_data:
+  influx_db_data:

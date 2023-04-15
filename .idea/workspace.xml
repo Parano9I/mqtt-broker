@@ -5,9 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eacba4b-492d-4e29-935c-ebcfd5d5d7a4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mqtt-broker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mqtt-broker.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Faker/RoleProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Faker/RoleProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/Sensor/SensorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/Sensor/SensorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Models/Topic.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Models/Topic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/api/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/database/factories/TopicFactory.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/database/seeders/RoleSeeder.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Sensor/CreateTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Sensor/CreateTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Topic/CreateTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Topic/CreateTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Topic/DeleteTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/tests/Feature/Http/Controllers/Topic/DeleteTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/broker/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/broker/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/broker/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/broker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/broker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/nginx/conf.d/app.conf" beforeDir="false" afterPath="$PROJECT_DIR$/docker/nginx/conf.d/app.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +37,20 @@
   <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/api/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -148,6 +182,7 @@
       <path value="$PROJECT_DIR$/api/vendor/tijsverkoyen/css-to-inline-styles" />
       <path value="$PROJECT_DIR$/api/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/api/vendor/graham-campbell/result-type" />
+      <path value="$PROJECT_DIR$/api/vendor/kalnoy/nestedset" />
     </include_path>
   </component>
   <component name="ProjectId" id="2La79IASkwlubBLWmLrFYJxq3jf" />
@@ -166,18 +201,26 @@
     "WebServerToolWindowFactoryState": "false",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm": "Docker Compose",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm": "Docker Compose",
-    "last_opened_file_path": "/home/parano1a/Projects/mqtt-broker/api",
+    "git-widget-placeholder": "Feature/Api/CreateSensorCRUD",
+    "last_opened_file_path": "/home/parano1a/Projects/nativo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/bin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -211,6 +254,23 @@
       <workItem from="1677081965025" duration="2072000" />
       <workItem from="1677090884291" duration="613000" />
       <workItem from="1677135927781" duration="18000" />
+      <workItem from="1679220132363" duration="11000" />
+      <workItem from="1679724698758" duration="23716000" />
+      <workItem from="1679812784420" duration="15230000" />
+      <workItem from="1679897898758" duration="216000" />
+      <workItem from="1680330101765" duration="23047000" />
+      <workItem from="1680367273021" duration="8475000" />
+      <workItem from="1680409149581" duration="1281000" />
+      <workItem from="1680416834599" duration="12711000" />
+      <workItem from="1680501689975" duration="30000" />
+      <workItem from="1680612548595" duration="469000" />
+      <workItem from="1680613364700" duration="42000" />
+      <workItem from="1680927107045" duration="54000" />
+      <workItem from="1680927170770" duration="16000" />
+      <workItem from="1680927196356" duration="93000" />
+      <workItem from="1680927802657" duration="27059000" />
+      <workItem from="1681013273312" duration="11906000" />
+      <workItem from="1681107199475" duration="45000" />
     </task>
     <servers />
   </component>

@@ -43,11 +43,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'role' => UserRoleEnum::class
+        'role'              => UserRoleEnum::class
     ];
 
     public function groups()
     {
-        return $this->belongsToMany(Group::class, 'groups_users');
+        return $this->belongsToMany(Group::class, 'groups_users')
+            ->withPivot('role_id')->withTimestamps()->using(GroupUser::class);
     }
 }

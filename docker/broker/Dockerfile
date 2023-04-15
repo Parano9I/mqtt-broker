@@ -18,6 +18,6 @@ RUN npm install
 USER node
 
 # Open the mapped port
-EXPOSE 8883
+EXPOSE 1883
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]
