@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6eacba4b-492d-4e29-935c-ebcfd5d5d7a4" name="Changes" comment="" />
+    <list default="true" id="6eacba4b-492d-4e29-935c-ebcfd5d5d7a4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/mqtt-broker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mqtt-broker.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -247,7 +250,7 @@
       <workItem from="1680927802657" duration="27059000" />
       <workItem from="1681013273312" duration="11906000" />
       <workItem from="1681107199475" duration="45000" />
-      <workItem from="1681533787818" duration="317000" />
+      <workItem from="1681533787818" duration="1953000" />
     </task>
     <servers />
   </component>
