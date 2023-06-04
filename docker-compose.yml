@@ -14,6 +14,7 @@ services:
     depends_on:
       - api
       - broker
+      - frontend
     ports:
       - 80:80
       - 1883:1883
@@ -47,6 +48,26 @@ services:
       DB_DATABASE: '${MYSQL_DATABASE}'
       DB_USERNAME: '${MYSQL_USERNAME}'
       DB_PASSWORD: '${MYSQL_PASSWORD}'
+      INFLUXDB_HOST: 'influxdb'
+      INFLUXDB_TOKEN: '${INFLUXDB_BROKER_TOKEN}'
+      INFLUXDB_DB: '${INFLUXDB_DB}'
+      INFLUXDB_ORG: '${INFLUXDB_INIT_ORG}'
+      INFLUXDB_BUCKET: '${INFLUXDB_INIT_BUCKET}'
+    networks:
+      - mqtt-project
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../docker/frontend/Dockerfile
+    container_name: frontend
+    restart: always
+    volumes:
+      - ./frontend:/var/www
+      - /var/www/node_modules
+    depends_on:
+      - broker
+      - api
     networks:
       - mqtt-project
 

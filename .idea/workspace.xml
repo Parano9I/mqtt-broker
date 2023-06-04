@@ -5,8 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eacba4b-492d-4e29-935c-ebcfd5d5d7a4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/mqtt-broker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mqtt-broker.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/Group/GroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/Group/GroupController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/Group/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/Group/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/OrganizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/OrganizationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/Sensor/SecretController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/Group/Topic/SecretController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/Sensor/SensorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/Group/Topic/SensorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/TopicController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/TopicController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/API/User/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Requests/Group/User/StoreRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Requests/Group/User/StoreRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Requests/Topic/UpdateRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Requests/Topic/UpdateRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Requests/User/LoginRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Requests/User/LoginRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Http/Resources/Group/GroupResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Resources/Group/GroupResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Models/Group.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Models/Group.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Models/Topic.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Models/Topic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Policies/GroupPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Policies/GroupPolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Policies/SensorPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Policies/SensorPolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/Policies/UserPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Policies/UserPolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/api/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/database/seeders/UserSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/broker/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/src/services/sensorService.js" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/services/sensorService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/frontend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/frontend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/nginx/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/docker/nginx/nginx.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +51,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
+        <option value="Vue Composition API Component" />
       </list>
     </option>
   </component>
@@ -33,6 +67,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/frontend/package.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/frontend/src/App.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/frontend/src/main.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/frontend/src/shims-vue.d.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/frontend/src/views/HomeView.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/frontend/tsconfig.json" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -162,6 +204,17 @@
       <path value="$PROJECT_DIR$/api/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/api/vendor/graham-campbell/result-type" />
       <path value="$PROJECT_DIR$/api/vendor/kalnoy/nestedset" />
+      <path value="$PROJECT_DIR$/api/vendor/tray-labs/laravel-influxdb" />
+      <path value="$PROJECT_DIR$/api/vendor/influxdb/influxdb-php" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/promise" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/message-factory" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/message" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/client-common" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/httplug" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/discovery" />
+      <path value="$PROJECT_DIR$/api/vendor/influxdata/influxdb-client-php" />
+      <path value="$PROJECT_DIR$/api/vendor/clue/stream-filter" />
     </include_path>
   </component>
   <component name="ProjectId" id="2La79IASkwlubBLWmLrFYJxq3jf" />
@@ -180,29 +233,40 @@
     "WebServerToolWindowFactoryState": "false",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm": "Docker Compose",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm": "Docker Compose",
-    "git-widget-placeholder": "develop",
-    "last_opened_file_path": "/home/parano1a/Projects/mqtt-broker",
+    "git-widget-placeholder": "Feature/FrontendInit",
+    "last_opened_file_path": "/home/parano1a/Projects/nativo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/home/parano1a/Projects/mqtt-broker/frontend/node_modules/prettier",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "/home/parano1a/Projects/mqtt-broker/frontend/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
       "mysql"
+    ],
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/components/Forms/Topics" />
+      <recent name="$PROJECT_DIR$/frontend/src/services/http/api" />
+      <recent name="$PROJECT_DIR$/frontend/src/store" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/bin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/views/dashboard" />
+      <recent name="$PROJECT_DIR$/frontend/src/views/auth" />
+      <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$/api" />
       <recent name="$PROJECT_DIR$/api/pub" />
     </key>
@@ -250,7 +314,36 @@
       <workItem from="1680927802657" duration="27059000" />
       <workItem from="1681013273312" duration="11906000" />
       <workItem from="1681107199475" duration="45000" />
-      <workItem from="1681533787818" duration="1953000" />
+      <workItem from="1681533787818" duration="3333000" />
+      <workItem from="1681538702999" duration="371000" />
+      <workItem from="1681539227493" duration="13443000" />
+      <workItem from="1681554811857" duration="7994000" />
+      <workItem from="1681564359291" duration="4493000" />
+      <workItem from="1681622120010" duration="20950000" />
+      <workItem from="1682140619332" duration="29651000" />
+      <workItem from="1682222292547" duration="21441000" />
+      <workItem from="1682316185533" duration="26000" />
+      <workItem from="1682350874762" duration="5877000" />
+      <workItem from="1682394044258" duration="11000" />
+      <workItem from="1682413880571" duration="686000" />
+      <workItem from="1682740802494" duration="17329000" />
+      <workItem from="1682827814896" duration="25440000" />
+      <workItem from="1682868850521" duration="7621000" />
+      <workItem from="1682920997523" duration="59000" />
+      <workItem from="1682960720882" duration="7204000" />
+      <workItem from="1683002425894" duration="18000" />
+      <workItem from="1683346885317" duration="33695000" />
+      <workItem from="1683433124425" duration="41439000" />
+      <workItem from="1683525823339" duration="10000" />
+      <workItem from="1683792521646" duration="16507000" />
+      <workItem from="1683871394364" duration="334000" />
+      <workItem from="1684750543413" duration="13553000" />
+      <workItem from="1684837869348" duration="6601000" />
+      <workItem from="1684908709035" duration="10357000" />
+      <workItem from="1685090109535" duration="1198000" />
+      <workItem from="1685340469910" duration="5052000" />
+      <workItem from="1685376799213" duration="5119000" />
+      <workItem from="1685430213626" duration="20000" />
     </task>
     <servers />
   </component>
@@ -267,5 +360,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

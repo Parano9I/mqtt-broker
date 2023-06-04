@@ -21,6 +21,6 @@ class Topic extends Model
 
     public function sensors()
     {
-        return $this->belongsToMany(Sensor::class);
+        return $this->hasMany(Sensor::class);
     }
 }

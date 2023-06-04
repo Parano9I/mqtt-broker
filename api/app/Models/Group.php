@@ -38,4 +38,8 @@ class Group extends Model
 
         return empty($user) ? null : $user->pivot->role_id;
     }
+
+    public function topics() {
+        return $this->hasMany(Topic::class);
+    }
 }

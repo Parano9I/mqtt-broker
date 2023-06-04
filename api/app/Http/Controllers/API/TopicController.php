@@ -11,9 +11,20 @@ use App\Models\Topic;
 
 class TopicController extends Controller
 {
-    public function index()
+    public function index(Group $group)
     {
+        $topics = Topic::whereHas('ancestors', function ($query) use ($group) {
+            $query->where('group_id', $group->id);
+        })
+            ->orWhere(function ($query) use ($group) {
+                $query->where('group_id', $group->id);
+            })
+            ->get()
+            ->toTree();
 
+        return response()->json([
+            'data' => $topics
+        ]);
     }
 
     public function show()

@@ -6,6 +6,7 @@ use App\DTOs\TokenDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Resources\User\TokenResource;
+use App\Http\Resources\User\UserResource;
 use App\Models\User;
 use App\Services\Hasher;
 use Illuminate\Http\Request;
@@ -32,7 +33,10 @@ class AuthController extends Controller
         $token->payload = $user->createToken('access_token')->plainTextToken;
 
         return response([
-            'data' => new TokenResource($token)
+            'data' => [
+                'user' => new UserResource($user),
+                'token' => new TokenResource($token)
+            ]
         ], 201);
 
     }

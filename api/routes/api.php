@@ -19,9 +19,9 @@ Route::prefix('users')->middleware('auth:sanctum')->group(function () {
     Route::patch('/{user}/roles', 'App\Http\Controllers\API\User\RoleController@update')->name('users.roles.update');
 });
 
+Route::get('/organizations', 'App\Http\Controllers\API\OrganizationController@index')->name('organizations.index');
+Route::post('/organizations', 'App\Http\Controllers\API\OrganizationController@store')->name('organizations.store');
 Route::prefix('organizations')->middleware('auth:sanctum')->group(function () {
-    Route::get('/', 'App\Http\Controllers\API\OrganizationController@index')->name('organizations.index');
-    Route::post('/', 'App\Http\Controllers\API\OrganizationController@store')->name('organizations.store');
     Route::patch('/{organization}', 'App\Http\Controllers\API\OrganizationController@update')
         ->name('organizations.update');
     Route::delete('/{organization}', 'App\Http\Controllers\API\OrganizationController@destroy')
@@ -46,6 +46,10 @@ Route::prefix('groups')->middleware('auth:sanctum')->group(function () {
         ->name('groups.users.roles.update');
 });
 
+Route::prefix('groups/{group}/sensors')->middleware('auth:sanctum')->name('groups.')->group(function () {
+    Route::get('/', '\App\Http\Controllers\API\Group\SensorController@index')->name('sensors.index');
+});
+
 Route::prefix('groups/{group}/topics')->middleware('auth:sanctum')->name('groups.')->group(function () {
     Route::get('/', '\App\Http\Controllers\API\TopicController@index')->name('topics.index');
     Route::get('/{topic}', '\App\Http\Controllers\API\TopicController@show')->name('topics.show');
@@ -54,19 +58,24 @@ Route::prefix('groups/{group}/topics')->middleware('auth:sanctum')->name('groups
     Route::delete('/{topic}', 'App\Http\Controllers\API\TopicController@destroy')->name('topics.destroy');
 });
 
+Route::prefix('sensors')->middleware('auth:sanctum')->name('groups.')->group(function () {
+    Route::get('/', '\App\Http\Controllers\API\Sensor\SensorController@index')->name('sensors.index');
+    Route::get('/{sensor}/metrics/', '\App\Http\Controllers\API\Sensor\MetricController')->name('sensors.metrics');
+});
+
 Route::prefix('groups/{group}/topics/{topic}/sensors')->middleware('auth:sanctum')->name('groups.topics.')
     ->group(function () {
-        Route::get('/', 'App\Http\Controllers\API\Sensor\SensorController@index')->name('sensors.index');
-        Route::get('/{sensor}', 'App\Http\Controllers\API\Sensor\SensorController@show')->name('sensors.show');
-        Route::post('/', 'App\Http\Controllers\API\Sensor\SensorController@store')->name('sensors.store');
-        Route::patch('/{sensor}', 'App\Http\Controllers\API\Sensor\SensorController@update')->name(
+        Route::get('/', 'App\Http\Controllers\API\Group\Topic\SensorController@index')->name('sensors.index');
+        Route::get('/{sensor}', 'App\Http\Controllers\API\Group\Topic\SensorController@show')->name('sensors.show');
+        Route::post('/', 'App\Http\Controllers\API\Group\Topic\SensorController@store')->name('sensors.store');
+        Route::patch('/{sensor}', 'App\Http\Controllers\API\Group\Topic\SensorController@update')->name(
             'sensors.update'
         );
-        Route::delete('/{sensor}', 'App\Http\Controllers\API\Sensor\SensorController@destroy')->name(
+        Route::delete('/{sensor}', 'App\Http\Controllers\API\Group\Topic\SensorController@destroy')->name(
             'sensors.destroy'
         );
-        Route::get('/{sensor}/secret', 'App\Http\Controllers\API\Sensor\SecretController@index')
+        Route::get('/{sensor}/secret', 'App\Http\Controllers\API\Group\Topic\SecretController@index')
             ->name('sensors.secret.index');
-        Route::get('/{sensor:uuid}/secret/generate', 'App\Http\Controllers\API\Sensor\SecretController@index')
+        Route::get('/{sensor:uuid}/secret/generate', 'App\Http\Controllers\API\Group\Topic\SecretController@index')
             ->name('sensors.secret.generate');
     });

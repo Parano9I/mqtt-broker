@@ -195,7 +195,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        \App\Providers\FakerServiceProvider::class
+        \App\Providers\FakerServiceProvider::class,
+
+        TrayLabs\InfluxDB\Providers\ServiceProvider::class,
     ],
 
     /*
@@ -210,6 +212,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'InfluxDB' => TrayLabs\InfluxDB\Facades\InfluxDB::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

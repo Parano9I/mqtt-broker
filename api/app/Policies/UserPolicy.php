@@ -10,6 +10,15 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
+    public function index(User $user)
+    {
+        if ($user->role->isOwner() || $user->role->isAdmin()) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function delete(User $user)
     {
         if ($user->role->isOwner()) {
