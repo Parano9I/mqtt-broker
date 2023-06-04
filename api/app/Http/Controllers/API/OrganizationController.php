@@ -18,7 +18,6 @@ class OrganizationController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $this->authorize('create', new Organization());
         $data = $request->validated();
 
         if (Organization::count()) return response()->json([

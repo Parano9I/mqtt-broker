@@ -122,12 +122,23 @@
       <path value="$PROJECT_DIR$/api/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/api/vendor/graham-campbell/result-type" />
       <path value="$PROJECT_DIR$/api/vendor/kalnoy/nestedset" />
+      <path value="$PROJECT_DIR$/api/vendor/tray-labs/laravel-influxdb" />
+      <path value="$PROJECT_DIR$/api/vendor/influxdb/influxdb-php" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/promise" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/message-factory" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/message" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/client-common" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/httplug" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/discovery" />
+      <path value="$PROJECT_DIR$/api/vendor/influxdata/influxdb-client-php" />
+      <path value="$PROJECT_DIR$/api/vendor/clue/stream-filter" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
     <interpreters>
-      <interpreter id="985cf518-e789-4e63-97bb-b527d7807333" name="api" home="docker-compose://DATA" debugger_id="php.debugger.XDebug">
-        <remote_data INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" DOCKER_ACCOUNT_NAME="Docker" DOCKER_COMPOSE_SERVICE_NAME="api" DOCKER_REMOTE_PROJECT_PATH="/opt/project">
+      <interpreter id="985cf518-e789-4e63-97bb-b527d7807333" name="api" home="docker-compose://DATA" false="false" debugger_id="php.debugger.XDebug">
+        <remote_data INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" DOCKER_ACCOUNT_NAME="Docker" DOCKER_COMPOSE_SERVICE_NAME="api" DOCKER_REMOTE_PROJECT_PATH="/opt/project">
           <type_data command="EXEC" />
           <dockerComposeConfigurationPaths>
             <item value="$PROJECT_DIR$/docker-compose.yml" />

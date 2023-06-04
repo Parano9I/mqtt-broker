@@ -3,55 +3,36 @@
 namespace App\Http\Controllers\API\Sensor;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Sensor\StoreRequest;
-use App\Http\Requests\Sensor\UpdateRequest;
-use App\Http\Resources\SensorResource;
+use App\Http\Resources\Group\SensorResource;
 use App\Models\Group;
 use App\Models\Sensor;
-use App\Models\Topic;
-use App\Services\SensorService;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class SensorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-    }
+        $user = $request->user();
+        $userGroups = $user->groups();
 
-    public function show()
-    {
-    }
-
-    public function store(StoreRequest $request, Group $group, Topic $topic, SensorService $service)
-    {
-        $request->validated();
-        $this->authorize('create', [Sensor::class, $group]);
-
-        $sensor = new Sensor();
-        $sensor->name = $request->get('name');
-        $sensor->description = $request->get('description');
-        $sensor->secret = $service->generateSecret();
-        $sensor->topic()->associate($topic);
-        $sensor->save();
+        $sensors = Sensor::whereHas('topic', function ($query) use ($userGroups) {
+            $query->whereHas('ancestors', function ($query) use ($userGroups) {
+                $query->whereIn('group_id', $userGroups->pluck('id'));
+            });
+        })->get()->map(function ($sensor) {
+            $path = collect();
+            $topic = $sensor->topic;
+            while ($topic) {
+                $path->prepend($topic->name);
+                $topic = $topic->parent;
+            }
+            $sensor->setAttribute('path', $path->implode('/'));
+            return $sensor;
+        });
 
         return response()->json([
-            'data' => new SensorResource($sensor)
+            'data' => SensorResource::collection($sensors)
         ]);
-    }
-
-    public function update(UpdateRequest $request, Group $group, Topic $topic, Sensor $sensor)
-    {
-        $data = $request->validated();
-        $this->authorize('update', [Sensor::class, $group]);
-
-        $sensor->updateOrFail($data);
-
-        return response()->json([
-            'data' => new SensorResource($sensor)
-        ]);
-    }
-
-    public function destroy()
-    {
     }
 }

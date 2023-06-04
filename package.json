@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "pinia": "^2.0.35",
+    "sqlite3": "^5.1.6"
+  }
+}

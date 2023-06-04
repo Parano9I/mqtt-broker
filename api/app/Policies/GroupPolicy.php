@@ -11,6 +11,11 @@ class GroupPolicy
 {
     use HandlesAuthorization;
 
+    public function index(User $user, Group $group): bool
+    {
+        return $user->role->isOwner() || $user->role->isAdmin();
+    }
+
     public function create(User $user, Group $group): bool
     {
         return $user->role->isOwner() || $user->role->isAdmin();

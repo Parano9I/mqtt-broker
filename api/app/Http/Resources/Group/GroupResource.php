@@ -19,7 +19,8 @@ class GroupResource extends JsonResource
             'id'         => $this->id,
             'attributes' => [
                 'title'       => $this->title,
-                'description' => $this->description
+                'description' => $this->description,
+                'users_count' => $this->users_count
             ]
         ];
     }

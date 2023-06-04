@@ -12,8 +12,12 @@ class GroupController extends Controller
 {
     public function index()
     {
+        $this->authorize('index', new Group());
+
+        $groups = Group::withCount('users')->get();
+
         return response()->json([
-            'data' => GroupResource::collection(Group::paginate(10))
+            'data' => GroupResource::collection($groups)
         ]);
     }
 

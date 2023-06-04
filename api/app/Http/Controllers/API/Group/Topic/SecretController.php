@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\API\Sensor;
+namespace App\Http\Controllers\API\Group\Topic;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class SecretController extends Controller
 {

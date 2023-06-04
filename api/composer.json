@@ -7,11 +7,13 @@
     "require": {
         "php": "^8.2.2",
         "guzzlehttp/guzzle": "^7.2",
+        "influxdata/influxdb-client-php": "^3.3",
         "kalnoy/nestedset": "^6.0",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "symfony/uid": "^6.2"
+        "symfony/uid": "^6.2",
+        "tray-labs/laravel-influxdb": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -59,7 +61,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
     },
     "minimum-stability": "stable",

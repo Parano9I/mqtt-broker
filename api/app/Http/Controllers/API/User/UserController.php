@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\User;
 
+use App\Enums\UserRoleEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\UpdateRequest;
@@ -9,6 +10,7 @@ use App\Http\Resources\User\UserResource;
 use App\Models\User;
 use App\Services\Hasher;
 use App\Services\UserService;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -17,6 +19,22 @@ class UserController extends Controller
     public function __construct(
         private UserService $userService
     ) {
+    }
+
+    public function index(Request $request) {
+        $this->authorize('index', User::class);
+
+        $user = $request->user();
+
+        $users = User::query()
+            ->whereNot('id', $user->id)
+            ->when($user->role->isAdmin(), function (Builder $query) {
+               return $query->where('role', UserRoleEnum::COMMON);
+            })->get();
+
+        return response()->json([
+            'data' => UserResource::collection($users)
+        ]);
     }
 
     public function store(StoreRequest $request, Hasher $hasher)

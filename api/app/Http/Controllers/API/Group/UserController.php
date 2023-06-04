@@ -40,7 +40,7 @@ class UserController extends Controller
             ], 409);
         }
 
-        $group->users()->attach($user, ['role_id' => $data['role_id']]);
+        $group->users()->attach($user, ['role_id' => UserGroupRoleEnum::COMMON]);
 
         return response()->json([], 204);
     }
